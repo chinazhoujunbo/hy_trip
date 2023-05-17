@@ -1,12 +1,15 @@
 <script setup>
 
-import TabBar from './components/tab-bar/tab-bar.vue';
+  import TabBar from './components/tab-bar/tab-bar.vue';
+  // import {useRoute} from 'vue-router';
+
 </script>
 
 <template>
-  <div>
+  <div class="app">
       <router-view></router-view>
-      <tab-bar></tab-bar>
+<!--      <tab-bar v-show="!useRoute().meta?.hideTabBar"></tab-bar>-->
+      <tab-bar/>
   </div>
 </template>
 
