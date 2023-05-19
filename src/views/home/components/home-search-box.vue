@@ -8,6 +8,12 @@
   import {formatDate} from '@/utils/format_date.js';
 
   const rooter = useRouter();
+  defineProps({
+    hotCity: {
+      type: Object,
+      default: () => ({})
+    }
+  });
 
   function positionClick() {
     navigator.geolocation.getCurrentPosition((res) => {
@@ -50,7 +56,7 @@
 <template>
   <div class="search-box">
 <!--      位置信息-->
-      <div class="location">
+      <div class="item gray-bottom-line location">
           <div class="city" @click="cityClick">{{ currentCity }}</div>
           <div class="position" @click="positionClick">
               <span class="text">我的位置</span>
@@ -59,7 +65,7 @@
       </div>
 
 <!--      日期范围-->
-      <div class="data-range">
+      <div class="item gray-bottom-line data-range">
           <div class="data-item start-day">
 <!--              <van-cell title="选择单个日期" :value="startDay" @click="show = true" />-->
               <van-calendar v-model:show="startShowCalendar"
@@ -81,6 +87,32 @@
               <div class="date" @click="endDayClick">{{ endDay }}</div>
           </div>
       </div>
+
+<!--      价格不限 人数不限-->
+      <div class="item gray-bottom-line">
+          <div class="price-number price">价格不限</div>
+          <div class="price-number number">人数不限</div>
+      </div>
+
+<!--      关键字/位置/民宿名-->
+      <div class="item gray-bottom-line">
+          <div style="width: 100%; color: #969799">
+              关键字/位置/民宿名
+          </div>
+      </div>
+
+ <!--              热门建议-->
+      <div class="hot-city">
+          <template v-for="(item, index) in hotCity" :key="index">
+              <div class="city"
+                   :style="{
+                             color:item?.tagText?.color,
+                             background: item?.tagText?.background.color }"
+              >
+                  {{ item?.tagText?.text }}
+              </div>
+          </template>
+      </div>
   </div>
 </template>
 
@@ -89,12 +121,28 @@
 .search-box {
   padding: 0 20px 0 20px ;
 
-  .location {
+  .item {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 44px;
+    margin-top: 5px;
 
+    .price {
+      flex: 2;
+      color: #969799;
+    }
+
+    .number {
+      color: #969799;
+    }
+  }
+
+  .price-number {
+    flex: 1;
+  }
+
+  .location {
     .city {
       flex: 1;
       color: #333
@@ -116,19 +164,36 @@
 
   .data-range {
     --van-calendar-popup-height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 44px;
 
     .data-item {
       flex: 1;
     }
 
     .date {
+      padding-bottom: 3px;
       margin-top: 5px;
     }
   }
+
+  .hot-city{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-top: 10px;
+    margin-left: -3px;
+
+    .city {
+      border-radius: 14px;
+      text-align: center;
+      font-size: 12px;
+      line-height: 1;
+      //line-height: 21.8px;
+      //height: 21.8px;
+      padding: 10px 8px;
+      margin: 3px;
+    }
+  }
+
 }
 
 
