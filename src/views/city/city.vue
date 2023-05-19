@@ -53,7 +53,16 @@ import {computed, ref, toRefs} from 'vue';
    </div>
    <div class="content">
        <div v-for="item in currentGroup?.cities" :key="item">
-           列表数据:{{ item }}
+           <div class="group-item">
+               <h2 class="title">标题：{{ item?.group }}</h2>
+               <div class="list">
+                   <template v-for="city in item?.cities" :key="city">
+                       <div class="city">
+                           {{ city.cityName }}
+                       </div>
+                   </template>
+               </div>
+           </div>
        </div>
    </div>
  </div>
