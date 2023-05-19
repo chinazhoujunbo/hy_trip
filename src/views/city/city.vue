@@ -3,6 +3,7 @@
 import {computed, ref, toRefs} from 'vue';
    import router from '@/router/index.js';
    import useCityStore from '@/stores/modules/city.js';
+import CityGroup from '@/views/city/components/city-group.vue';
 
    const searchValue = ref('');
    const tabActive = ref('');
@@ -25,7 +26,6 @@ import {computed, ref, toRefs} from 'vue';
    //   allCity.value = res;
    // })
    useCityStore().fetchAllCitiesData();
-
 </script>
 
 <template>
@@ -52,18 +52,9 @@ import {computed, ref, toRefs} from 'vue';
        </van-tabs>
    </div>
    <div class="content">
-       <div v-for="item in currentGroup?.cities" :key="item">
-           <div class="group-item">
-               <h2 class="title">标题：{{ item?.group }}</h2>
-               <div class="list">
-                   <template v-for="city in item?.cities" :key="city">
-                       <div class="city">
-                           {{ city.cityName }}
-                       </div>
-                   </template>
-               </div>
-           </div>
-       </div>
+       <template v-for="(value, key) in allCities" :key="key">
+           <city-group v-show="key === tabActive" :current-group="value"/>
+       </template>
    </div>
  </div>
 </template>

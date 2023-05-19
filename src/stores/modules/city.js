@@ -4,6 +4,9 @@ import {getAllCity} from '@/service/index.js';
 const useCityStore = defineStore('city', {
   state: () => ({
     allCities: [],
+    currentCity: {
+      cityName: '阿富汗',
+    },
   }),
   getters: {},
   actions: {
