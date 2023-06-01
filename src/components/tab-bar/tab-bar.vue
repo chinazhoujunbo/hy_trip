@@ -2,9 +2,12 @@
 
   import tableBarData from '@/assets/data/tabbar.js'
   import {getImageUrl} from '@/utils/load_assets.js';
-  import {ref} from 'vue';
+	import {computed, } from 'vue';
+	import {useRoute} from 'vue-router';
 
-  const currentIndex = ref(0);
+  const currentIndex = computed(() => {
+		return tableBarData.findIndex(item =>  item.path === useRoute().path);
+	});
 
   function whetherActiveImage(item, index) {
     if (whetherActive(index)) return item.imageActive;
@@ -17,14 +20,17 @@
 
 <template>
   <div class="tab-bar">
-      <van-tabbar v-model="currentIndex">
+      <van-tabbar
+					v-model="currentIndex"
+					:route="true"
+			>
           <template v-for="(item, index) in tableBarData" :key="item">
               <van-tabbar-item :to="item.path">
               <template #icon>
                   <img :src="getImageUrl(whetherActiveImage(item, index))"
                        alt=""/>
               </template>
-                  <span>{{ item.text }}</span>
+                  <span :class="{active: whetherActive(index)}">{{ item.text }}</span>
               </van-tabbar-item>
           </template>
       </van-tabbar>
@@ -38,6 +44,10 @@
   img {
     height: 26px;
   }
+
+	.active{
+		color: orange;
+	}
 }
 
 

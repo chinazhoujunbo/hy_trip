@@ -30,15 +30,15 @@ defineProps({
 	overflow-x: scroll;
 
 	.item {
-		padding: 0 2.67vw  /* 10/3.75 */;
+		text-align: center;
+		padding: 0 5vw  /* 10/3.75 */;
 		.album{
 			img{
 				width: 8vw  /* 30/3.75 */;
 			}
 		}
 		.title {
-			width: inherit;
-			text-align: center;
+			white-space: nowrap;
 			font-size:0.53vw  /* 2/3.75 */;
 		}
 	}

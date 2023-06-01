@@ -12,3 +12,9 @@ export function getCategory() {
     url: '/home/categories',
   })
 }
+
+export function getHomeHouseList(page) {
+  return request.get({
+    url: `/home/houselist?page=${page}`,
+  })
+}

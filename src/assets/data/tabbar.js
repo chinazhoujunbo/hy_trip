@@ -12,13 +12,13 @@ export default [
     imageActive: 'tabbar/tab_favor_active.png',
   },
   {
-    path: 'order',
+    path: '/order',
     text: '订单',
     image: 'tabbar/tab_order.png',
     imageActive: 'tabbar/tab_order_active.png',
   },
   {
-    path: 'msg',
+    path: '/msg',
     text: '信息',
     image: 'tabbar/tab_message.png',
     imageActive: 'tabbar/tab_message.png',
