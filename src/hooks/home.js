@@ -3,13 +3,13 @@ import {throttle} from 'underscore';
 
 export function useScroll() {
   const reachBottom = ref(false);
-
+  const scrollTop = ref(0);
   const scrollListenerHandler = throttle(() =>  {
     const clientHeight = document.documentElement.clientHeight;
-    const scrollTop = document.documentElement.scrollTop;
+    scrollTop.value = document.documentElement.scrollTop;
     const scrollHeight = document.documentElement.scrollHeight;
 
-    if (scrollTop + clientHeight >= scrollHeight) reachBottom.value = true;
+    if (scrollTop.value + clientHeight >= scrollHeight) reachBottom.value = true;
   })
   onMounted(() => {
     window.addEventListener("scroll", scrollListenerHandler)
@@ -24,5 +24,5 @@ export function useScroll() {
     window.removeEventListener('scroll', scrollListenerHandler)
   })
 
-  return { reachBottom };
+  return { reachBottom, scrollTop };
 }
