@@ -1,7 +1,7 @@
 import {defineStore} from 'pinia';
 import {addDay, formatDate, getDaysBetweenDates} from '@/utils/format_date.js';
 import nzhcn from 'nzh/cn';
-import {getHotCity} from '@/service/modules/home.js';
+import {getCategory, getHotCity} from '@/service/modules/home.js';
 
 
 export const useHome = defineStore('home', {
@@ -11,6 +11,7 @@ export const useHome = defineStore('home', {
     endDay: formatDate(new Date().setDate(new Date().getDate() + 1)),
     endDate: addDay(1),
     hotCity: [],
+    category: [],
   }),
   getters: {
     interValDay(state, ) {
@@ -20,6 +21,9 @@ export const useHome = defineStore('home', {
   actions: {
     getHot() {
       getHotCity().then(res => this.hotCity = res);
+    },
+    fetchCategory() {
+      getCategory().then(res => this.category = res);
     }
   },
 });

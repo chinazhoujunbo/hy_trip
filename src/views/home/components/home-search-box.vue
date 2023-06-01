@@ -51,6 +51,11 @@
   }
 
   console.log(new Date(startDay.value));
+
+	// 开始搜索
+	function broClick() {
+		rooter.push('/search');
+	}
 </script>
 
 <template>
@@ -113,6 +118,11 @@
               </div>
           </template>
       </div>
+
+<!--		开始搜索-->
+		  <div class="browser" @click="broClick">
+				开始搜索
+			</div>
   </div>
 </template>
 
@@ -193,6 +203,18 @@
       margin: 3px;
     }
   }
+
+	.browser {
+		margin-top: 2.67vw  /* 10/3.75 */;
+		text-align: center;
+		color: white;
+		width: inherit;
+		height: 5.33vw  /* 20/3.75 */;
+		line-height: 5.33vw  /* 20/3.75 */;
+		border-radius: 1.33vw  /* 5/3.75 */;
+		background-color: var(--primary-color);
+		font-size:2.67vw  /* 10/3.75 */;
+	}
 
 }
 

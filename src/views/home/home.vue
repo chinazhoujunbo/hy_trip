@@ -4,10 +4,12 @@
   import HomeSearchBox from '@/views/home/components/home-search-box.vue';
   import {toRefs} from 'vue';
   import {useHome} from '@/stores/modules/home.js';
+	import Category from '@/views/home/components/category.vue';
 
   const title = '弘源旅途';
-  const { hotCity } = toRefs(useHome());
+  const { hotCity, category } = toRefs(useHome());
   useHome().getHot();
+	useHome().fetchCategory();
 </script>
 
 <template>
@@ -17,7 +19,7 @@
            <img src="@/assets/img/home/banner.webp" alt="" />
        </div>
        <home-search-box :hot-city="hotCity"/>
-
+       <category :kinds="category"/>
    </div>
 </template>
 

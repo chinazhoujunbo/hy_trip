@@ -6,3 +6,9 @@ export function getHotCity() {
     url: '/home/hotSuggests',
   });
 }
+
+export function getCategory() {
+  return request.get({
+    url: '/home/categories',
+  })
+}
